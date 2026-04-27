@@ -1,6 +1,7 @@
 ---
 name: heptabase-cli
 description: Interact with Heptabase using the CLI to create, read, and edit notes, journals, tags, and cards, and to browse AI Tutor goals, courses, and lessons. Use when the user asks to manage their Heptabase knowledge base, search cards, work with journals or tags, or read AI Tutor content.
+allowed-tools: Bash(heptabase:*) Bash(jq:*)
 metadata:
   heptabase-cli-version-range: "0.1.x"
 ---
@@ -19,6 +20,14 @@ heptabase help
 heptabase note --help
 heptabase note create --help
 ```
+
+## Common recipes
+
+Use these as quick recipes for frequent requests. For less common flags or if a command fails, run `heptabase help` or `<command> --help` to discover the correct syntax.
+
+- **Recent cards:** `heptabase card list --sort createdTime --direction descending --limit 20`
+- **Today's journal:** `heptabase journal read $(date +%Y-%m-%d)`
+- **Search cards by keyword:** `heptabase card list -q "<keyword>" --limit 20`
 
 ## All output is JSON
 
