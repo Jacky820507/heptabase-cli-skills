@@ -1,0 +1,16 @@
+{
+  "name": "heptabase-cli-skills",
+  "owner": {
+    "name": "Heptabase"
+  },
+  "metadata": {
+    "description": "Skills for Heptabase CLI"
+  },
+  "plugins": [
+    {
+      "name": "heptabase",
+      "source": "./",
+      "description": "Skills for Heptabase CLI"
+    }
+  ]
+}

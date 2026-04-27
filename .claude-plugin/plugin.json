@@ -1,0 +1,21 @@
+{
+  "name": "heptabase",
+  "version": "1.0.0",
+  "description": "Interact with Heptabase using the CLI to manage notes, journals, tags, and cards, and to browse AI Tutor goals, courses, and lessons. Use when the user asks to manage their Heptabase knowledge base.",
+  "author": {
+    "name": "Heptabase"
+  },
+  "repository": "https://github.com/heptameta/heptabase-cli-skills",
+  "license": "MIT",
+  "keywords": [
+    "heptabase",
+    "knowledge-management",
+    "pkm",
+    "note-taking",
+    "learning",
+    "research",
+    "notes",
+    "journals",
+    "tags"
+  ]
+}
