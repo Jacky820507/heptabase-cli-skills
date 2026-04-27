@@ -1,7 +1,7 @@
 ---
 name: heptabase-cli
 description: Interact with Heptabase using the CLI to create, read, and edit notes, journals, tags, and cards, and to browse AI Tutor goals, courses, and lessons. Use when the user asks to manage their Heptabase knowledge base, search cards, work with journals or tags, or read AI Tutor content.
-allowed-tools: Bash(heptabase:*) Bash(jq:*)
+allowed-tools: Bash(heptabase *) Bash(jq *)
 metadata:
   heptabase-cli-version-range: "0.1.x"
 ---
