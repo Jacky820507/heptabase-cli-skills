@@ -17,17 +17,15 @@ These skills follow the [Agent Skills specification](https://agentskills.io/spec
 npx skills add git@github.com:heptameta/heptabase-cli-skills.git
 ```
 
-### Manual install
-
-#### Claude Code
+### Claude Code
 
 Add the contents of this repo to a `.claude` folder in the root of the project you're using with Claude Code. See more in the [official Claude Skills documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview).
 
-#### Codex CLI
+### Codex CLI
 
 Copy the `skills/` directory into your Codex skills path (typically `~/.codex/skills`). See the [Agent Skills specification](https://agentskills.io/specification) for the standard skill format.
 
-#### OpenCode
+### OpenCode
 
 Clone the entire repo into the OpenCode skills directory (`~/.opencode/skills/`):
 
@@ -65,6 +63,6 @@ git -C ~/.opencode/skills/heptabase-cli-skills pull
 
 ## Skills
 
-| Skill                                 | Description                                                                                               |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, goals, courses, and lessons |
+| Skill                                 | Description                                                                                                            |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, whiteboards, goals, courses, and lessons |

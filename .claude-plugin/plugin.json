@@ -1,7 +1,7 @@
 {
   "name": "heptabase",
   "version": "1.0.0",
-  "description": "Interact with Heptabase using the CLI to manage notes, journals, tags, and cards, and to browse AI Tutor goals, courses, and lessons. Use when the user asks to manage their Heptabase knowledge base.",
+  "description": "Interact with Heptabase using the CLI to manage notes, journals, tags, whiteboards, goals, courses, and lessons. Use when working with Heptabase.",
   "author": {
     "name": "Heptabase"
   },
@@ -16,6 +16,7 @@
     "research",
     "notes",
     "journals",
-    "tags"
+    "tags",
+    "whiteboards"
   ]
 }
