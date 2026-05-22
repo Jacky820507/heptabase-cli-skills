@@ -31,6 +31,12 @@ On Windows, this repo includes a helper script that installs or updates the Hept
 .\install-codex.ps1
 ```
 
+To enable automatic Codex skill sync after future `git pull`, checkout, or rebase operations, run this once per clone:
+
+```powershell
+.\enable-codex-auto-sync.ps1
+```
+
 To commit and push local skill updates to your fork:
 
 ```powershell
