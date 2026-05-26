@@ -52,6 +52,7 @@ Every command prints JSON to stdout. You can parse it with `jq` or pipe it to ot
 ## Troubleshooting
 
 - **Desktop app must be running.** The CLI communicates with a local server inside the app. If the app is closed, all commands fail. Run `heptabase start` to launch and wait for readiness.
+- **Codex sandbox may block the local CLI server.** If Heptabase starts but Codex says the CLI server is not ready, read `references/codex-sandbox.md`; retry `heptabase` commands outside the sandbox when Codex supports escalation.
 - **Mutations are serialized.** Write operations (create, save, append, trash, restore, tag add/remove, card set-property, file export, whiteboard add-card/remove-card) run one at a time to prevent conflicts. Reads are concurrent.
 - **Request body size limit.** The server rejects request bodies larger than 1 MB.
 - **Request timeout.** The server times out requests that take longer than 10 seconds to send their body.

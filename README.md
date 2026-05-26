@@ -25,6 +25,8 @@ Add the contents of this repo to a `.claude` folder in the root of the project y
 
 Copy the `skills/` directory into your Codex skills path (typically `~/.codex/skills`). See the [Agent Skills specification](https://agentskills.io/specification) for the standard skill format.
 
+Codex sandbox note: if Heptabase starts but Codex says the CLI server is not ready, see [Codex sandbox troubleshooting](skills/heptabase-cli/references/codex-sandbox.md).
+
 ### OpenCode
 
 Clone the entire repo into the OpenCode skills directory (`~/.opencode/skills/`):
