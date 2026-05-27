@@ -1,6 +1,6 @@
 ---
 name: heptabase-cli
-description: Interact with Heptabase using the CLI to create, read, and edit notes, journals, tags, cards, tag property schemas, card property values, export local files for native file-reading tools, list whiteboards and manage cards on whiteboards, and browse AI Tutor goals, courses, and lessons. Use when the user asks to manage their Heptabase knowledge base, search cards, work with journals, tags, tag database properties, card property values, files, or whiteboards, or read AI Tutor content.
+description: Interact with Heptabase using the CLI to manage knowledge base content, search cards, edit properties, read parsed PDF content, export local files, manage whiteboard cards, and browse AI Tutor goals, courses, and lessons.
 allowed-tools: Bash(heptabase *) Bash(jq *) Bash(mktemp *)
 metadata:
   heptabase-cli-version-range: "0.4.x"
@@ -32,6 +32,7 @@ Use these as quick recipes for frequent requests. For less common flags or if a 
 - **List cards with property values:** `heptabase tag cards <tagId> --include-properties`
 - **Read card properties:** `heptabase card properties <cardIdOrDate>`
 - **Set card property:** first read `references/property-values.md`, then use `heptabase card set-property <cardIdOrDate> --property-id <propertyId> --value "Published"` for strings/options or `--json-value ...` for typed JSON values.
+- **Read parsed PDF content:** first read `references/pdf-reading.md`, then use `heptabase pdf metadata <pdfCardId>` to discover `totalPages`, and read a page range with `heptabase pdf read <pdfCardId> --start-page N --end-page N`.
 - **Read a file from a PDF/media card:** first read `references/file-reading.md`, then use `heptabase file list --card-id <cardId>` to find the right file `id`, run `mktemp -d`, and pass the returned directory path to `heptabase file export <fileId> --output-dir <scratchDir>`. Read the returned `path` with your native file-reading tool.
 - **Read a file by `fileId`:** first read `references/file-reading.md`, then run `mktemp -d` and pass the returned directory path to `heptabase file export <fileId> --output-dir <scratchDir>`. Read the returned `path` with your native file-reading tool.
 - **List cards on a whiteboard:** `heptabase whiteboard cards <whiteboardId>`
@@ -44,6 +45,10 @@ Before setting a property value, you MUST read `references/property-values.md` a
 ## File reading
 
 Before reading/listing files or exporting a file, you MUST read `references/file-reading.md`.
+
+## PDF reading
+
+Before reading parsed PDF content, you MUST read `references/pdf-reading.md`.
 
 ## All output is JSON
 
@@ -64,7 +69,7 @@ Every command prints JSON to stdout. You can parse it with `jq` or pipe it to ot
 - **Binary/media upload workflows not supported.** This skill is for JSON/text operations on notes/journals/tags/cards and AI Tutor reads, not file upload or media-processing APIs.
 - **Whiteboard creation/edit/delete not supported yet.** You can list whiteboards and add, list, or remove cards on them, but you can't create, rename, move, or delete whiteboards.
 - **Property filtering not supported yet.** You can read tag property schemas, read property values, and set one property value on a card, but you can't query cards by property value.
-- **Parsed PDF/media content not supported yet.** You can export the raw local file for PDF/media cards, but you can't read Heptabase's parsed PDF content or media transcripts directly through the CLI.
+- **Parsed media transcripts not supported yet.** Media transcripts are not exposed through the CLI.
 
 ## Warnings
 

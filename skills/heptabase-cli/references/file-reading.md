@@ -79,6 +79,7 @@ Now read `/tmp/hepta-read/report-55555555-5555-4555-8555-555555555555.pdf` with 
 ## Avoid Reading Huge Files Blindly
 
 - Check `size`, `mimeType`, and `name` before reading.
+- For textual PDF reads, prefer `references/pdf-reading.md` and `heptabase pdf read` over exporting the raw PDF.
 - If the file is large, ask the user before reading the whole file or use targeted extraction, search, or page reads to avoid wasting tokens.
 
 ## Clean Up Scratch Files
