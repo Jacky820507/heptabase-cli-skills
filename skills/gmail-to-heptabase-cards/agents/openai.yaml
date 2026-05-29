@@ -1,0 +1,7 @@
+interface:
+  display_name: "Gmail 轉 Heptabase 卡片"
+  short_description: "將白名單 Gmail 信件匯入 Heptabase，建立原文卡與整理卡。"
+  default_prompt: "使用 $gmail-to-heptabase-cards 將白名單 Gmail 信件匯入 Heptabase，並放到 00_INBOX暫存區。"
+
+policy:
+  allow_implicit_invocation: true
