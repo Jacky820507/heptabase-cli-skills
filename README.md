@@ -43,6 +43,8 @@ To commit and push local skill updates to your fork:
 .\sync-github.ps1 -Message "Update Heptabase CLI skill"
 ```
 
+Codex sandbox note: if Heptabase starts but Codex says the CLI server is not ready, see [Codex sandbox troubleshooting](skills/heptabase-cli/references/codex-sandbox.md).
+
 ### OpenCode
 
 Clone the entire repo into the OpenCode skills directory (`~/.opencode/skills/`):
@@ -81,6 +83,7 @@ git -C ~/.opencode/skills/heptabase-cli-skills pull
 
 ## Skills
 
-| Skill                                 | Description                                                                                                            |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, whiteboards, goals, courses, and lessons |
+<!-- prettier-ignore -->
+| Skill                                 | Description                                                                                                                   |
+|---|---|
+| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, files, whiteboards, goals, courses, and lessons |
