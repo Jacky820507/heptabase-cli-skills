@@ -63,6 +63,7 @@ git -C ~/.opencode/skills/heptabase-cli-skills pull
 
 ## Skills
 
-| Skill                                 | Description                                                                                                            |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, whiteboards, goals, courses, and lessons |
+<!-- prettier-ignore -->
+| Skill                                 | Description                                                                                                                   |
+|---|---|
+| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, files, whiteboards, goals, courses, and lessons |
