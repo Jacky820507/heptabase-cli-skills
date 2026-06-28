@@ -28,6 +28,9 @@ Use these as quick recipes for frequent requests. For less common flags or if a 
 - **Recent cards:** `heptabase card list --sort createdTime --direction descending --limit 20`
 - **Today's journal:** `heptabase journal read $(date +%Y-%m-%d)`
 - **Search cards by keyword:** `heptabase card list -q "<keyword>" --limit 20`
+- **Create a note from markdown:** `heptabase note create --content "# Title\n\nBody"`.
+- **Append markdown to a note:** `heptabase note append <cardId> --content "More content"`.
+- **Edit note content with JSON save:** first read `references/card-content-schema.md`, then use `heptabase note read <cardId>`, modify the returned ProseMirror JSON, and save with `heptabase note save <cardId> --content-md5 <contentMd5> --content-file <path>`.
 - **List tag properties:** `heptabase tag properties <tagId>`
 - **List cards with property values:** `heptabase tag cards <tagId> --include-properties`
 - **Read card properties:** `heptabase card properties <cardIdOrDate>`
@@ -38,6 +41,10 @@ Use these as quick recipes for frequent requests. For less common flags or if a 
 - **Read a file by `fileId`:** first read `references/file-reading.md`, then run `mktemp -d` and pass the returned directory path to `heptabase file export <fileId> --output-dir <scratchDir>`. Read the returned `path` with your native file-reading tool.
 - **List cards on a whiteboard:** `heptabase whiteboard cards <whiteboardId>`
 - **Add a card to a whiteboard:** `heptabase whiteboard add-card --whiteboard-id <whiteboardId> --card-id <cardIdOrDate>`
+
+## Note and journal card content editing
+
+Use `create` / `append` with Markdown for ordinary writing. Before calling `heptabase note save` / `heptabase journal save` with ProseMirror JSON, you MUST read `references/card-content-schema.md`. Also read it before generating Markdown that uses Heptabase-specific extensions such as card mentions, whiteboard mentions, dates, videos, math, or toggle/todo lists.
 
 ## Property editing
 

@@ -1,12 +1,15 @@
 {
   "name": "heptabase",
+  "displayName": "Heptabase",
   "version": "1.4.1",
   "description": "Interact with Heptabase using the CLI to manage notes, journals, tags, cards, files, whiteboards, goals, courses, and lessons. Use when working with Heptabase.",
   "author": {
     "name": "Heptabase"
   },
+  "homepage": "https://heptabase.com",
   "repository": "https://github.com/heptameta/heptabase-cli-skills",
   "license": "MIT",
+  "logo": "assets/logo.svg",
   "keywords": [
     "heptabase",
     "knowledge-management",

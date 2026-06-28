@@ -14,6 +14,8 @@ Claude Code resolves the plugin version in this order:
 
 Because `.claude-plugin/plugin.json` wins, keep the plugin version there as the single source of truth. Do not add a plugin entry `version` in `.claude-plugin/marketplace.json` unless we intentionally change the versioning strategy.
 
+This repo also ships a Cursor plugin manifest at `.cursor-plugin/plugin.json` (single-plugin layout, no `marketplace.json`). Cursor reads its version from that file, so keep `.cursor-plugin/plugin.json` `version` in sync with `.claude-plugin/plugin.json` `version` on every release.
+
 ## Version Bump Guidelines
 
 - Use a patch bump for documentation-only skill fixes that do not change CLI compatibility.
@@ -23,7 +25,9 @@ Because `.claude-plugin/plugin.json` wins, keep the plugin version there as the 
 ## Release Checklist
 
 - Bump `.claude-plugin/plugin.json` `version`.
+- Bump `.cursor-plugin/plugin.json` `version` to match.
 - Update `skills/heptabase-cli/SKILL.md` `metadata.heptabase-cli-version-range` only when the supported CLI range changes.
 - Validate the skill: `npx --yes skills-ref validate ./skills/heptabase-cli`.
-- Validate the marketplace manifest: `claude plugin validate .`.
+- Validate the Claude Code marketplace manifest: `claude plugin validate .`.
+- Validate the Cursor plugin manifest: `node scripts/validate-cursor-plugin.mjs`.
 - Commit, tag, and push the release.
