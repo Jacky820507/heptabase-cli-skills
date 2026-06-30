@@ -1,5 +1,5 @@
 param(
-    [string]$Message = "Update Heptabase CLI skill",
+    [string]$Message = "Update Heptabase CLI skills",
     [switch]$SkipPull
 )
 
@@ -12,7 +12,19 @@ if (-not $SkipPull) {
     git pull --ff-only origin main
 }
 
-git add skills install-codex.ps1 sync-github.ps1 README.md
+$PathsToStage = @(
+    "skills",
+    ".claude-plugin",
+    ".github",
+    ".githooks",
+    "install-codex.ps1",
+    "enable-codex-auto-sync.ps1",
+    "sync-github.ps1",
+    "README.md",
+    "CONTRIBUTING.md"
+)
+
+git add -- $PathsToStage
 
 $Status = git status --porcelain
 if (-not $Status) {

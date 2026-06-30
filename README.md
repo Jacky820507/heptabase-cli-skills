@@ -25,7 +25,7 @@ Add the contents of this repo to a `.claude` folder in the root of the project y
 
 Copy the `skills/` directory into your Codex skills path (typically `~/.codex/skills`). See the [Agent Skills specification](https://agentskills.io/specification) for the standard skill format.
 
-On Windows, this repo includes a helper script that installs or updates the Heptabase skill in Codex:
+On Windows, this repo includes a helper script that installs or updates all bundled Heptabase skills in Codex:
 
 ```powershell
 .\install-codex.ps1
@@ -87,3 +87,4 @@ git -C ~/.opencode/skills/heptabase-cli-skills pull
 | Skill                                 | Description                                                                                                                   |
 |---|---|
 | [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, files, whiteboards, goals, courses, and lessons |
+| [gmail-to-heptabase-cards](skills/gmail-to-heptabase-cards) | Convert selected Gmail messages into Heptabase source and summary cards with deduplication and inbox whiteboard placement |
