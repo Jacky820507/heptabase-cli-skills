@@ -1,6 +1,6 @@
 ---
 name: heptabase-cli
-description: Interact with Heptabase using the CLI to manage knowledge base content, search cards, edit properties, read parsed PDF and media transcript content, export local files, manage whiteboard cards, and browse AI Tutor goals, courses, and lessons.
+description: Use the local heptabase CLI whenever the user mentions Heptabase or shares an app.heptabase.com URL/deep link — read cards, journals, and whiteboards by the ID in the URL instead of opening a browser (agent browsers are not logged in). Supports listing and searching cards, creating and editing notes and journals, tags and properties, reading parsed PDF and audio/video transcript content, exporting local files, managing whiteboard cards, and browsing AI Tutor goals, courses, and lessons.
 allowed-tools: Bash(heptabase *) Bash(jq *) Bash(mktemp *)
 metadata:
   heptabase-cli-version-range: "0.4.x"
@@ -41,6 +41,18 @@ Use these as quick recipes for frequent requests. For less common flags or if a 
 - **Read a file by `fileId`:** first read `references/file-reading.md`, then run `mktemp -d` and pass the returned directory path to `heptabase file export <fileId> --output-dir <scratchDir>`. Read the returned `path` with your native file-reading tool.
 - **List cards on a whiteboard:** `heptabase whiteboard cards <whiteboardId>`
 - **Add a card to a whiteboard:** `heptabase whiteboard add-card --whiteboard-id <whiteboardId> --card-id <cardIdOrDate>`
+
+## Heptabase URLs (Deep links)
+
+When the user shares a Heptabase URL (aka. deep link), use the CLI to read it — do NOT open it in a browser if the user does not explicitly ask you to (the app requires authentication and browsers used by agents are typically not logged in).
+
+URL patterns and how to handle them:
+
+- **Journal card:** `https://app.heptabase.com/<workspaceId>/card/<YYYY-MM-DD>` → `heptabase journal read <YYYY-MM-DD>`
+- **Card by UUID:** `https://app.heptabase.com/<workspaceId>/card/<uuid>` → first run `heptabase card properties <uuid>` to discover the card type, then read its content with the matching command (`heptabase note read <uuid>`, `heptabase pdf metadata <uuid>`, etc.).
+- **Whiteboard:** `https://app.heptabase.com/<workspaceId>/whiteboard/<uuid>` → `heptabase whiteboard cards <uuid>`
+
+The `<workspaceId>` segment in the URL is not needed by the CLI — extract only the card/whiteboard ID.
 
 ## Note and journal card content editing
 
