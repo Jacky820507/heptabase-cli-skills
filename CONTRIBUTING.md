@@ -1,5 +1,15 @@
 # Contributing
 
+## Setup (once per clone)
+
+This is a **public** repo. Install the local pre-commit hook so staged changes are scanned for sensitive/internal data before every commit:
+
+```bash
+node .claude/skills/public-repo-guard/scripts/install-git-hook.mjs
+```
+
+Hooks live under `.git/` and are never committed. Details: [`.claude/skills/public-repo-guard/SKILL.md`](.claude/skills/public-repo-guard/SKILL.md).
+
 ## Release Process
 
 Release a new version when the Heptabase CLI interface changes or when the CLI version no longer matches the compatibility range declared in `skills/heptabase-cli/SKILL.md`.
