@@ -203,7 +203,9 @@ function scanStagedDiff() {
     .filter(Boolean);
   for (const file of stagedFiles) scanFileName(file);
 
-  const diff = git(["diff", "--cached", "-U0", "--no-color"]);
+  // Force a/ b/ prefixes so +++ b/<path> parsing is stable even when the user
+  // has diff.noprefix, diff.mnemonicPrefix, or a custom diff.dstPrefix set.
+  const diff = git(["diff", "--cached", "-U0", "--no-color", "--src-prefix=a/", "--dst-prefix=b/"]);
   let currentFile = null;
   let lineNumber = 0;
   for (const raw of diff.split("\n")) {
