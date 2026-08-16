@@ -10,6 +10,10 @@ node .claude/skills/public-repo-guard/scripts/install-git-hook.mjs
 
 Hooks live under `.git/` and are never committed. Details: [`.claude/skills/public-repo-guard/SKILL.md`](.claude/skills/public-repo-guard/SKILL.md).
 
+## Agent skills layout
+
+Maintainer skills live under [`.claude/skills/`](.claude/skills/). [`.agents/skills`](.agents/skills) is a symlink to that folder so Codex and other skills-compatible agents discover the same skills. Edit only under `.claude/skills/`. Product skills shipped to users live under [`skills/`](skills/) and are separate. See [AGENTS.md](AGENTS.md).
+
 ## Release Process
 
 Release a new version when the Heptabase CLI interface changes or when the CLI version no longer matches the compatibility range declared in `skills/heptabase-cli/SKILL.md`.

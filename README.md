@@ -23,7 +23,14 @@ Add the contents of this repo to a `.claude` folder in the root of the project y
 
 ### Codex CLI
 
-Copy the `skills/` directory into your Codex skills path (typically `~/.codex/skills`). See the [Agent Skills specification](https://agentskills.io/specification) for the standard skill format.
+Copy the contents of `skills/` into your user skills path (prefer `~/.agents/skills/`; `~/.codex/skills/` still works). For example:
+
+```
+mkdir -p ~/.agents/skills
+cp -R skills/heptabase-cli ~/.agents/skills/heptabase-cli
+```
+
+See the [Agent Skills specification](https://agentskills.io/specification) for the standard skill format.
 
 On Windows, this repo includes a helper script that installs or updates all bundled Heptabase skills in Codex:
 
@@ -79,6 +86,12 @@ For OpenCode installs, pull the latest repo:
 
 ```
 git -C ~/.opencode/skills/heptabase-cli-skills pull
+```
+
+For Codex installs, replace the copied skill folder from this repo:
+
+```
+cp -R skills/heptabase-cli ~/.agents/skills/heptabase-cli
 ```
 
 ## Skills
