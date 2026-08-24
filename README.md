@@ -79,6 +79,6 @@ cp -R skills/heptabase-cli ~/.agents/skills/heptabase-cli
 ## Skills
 
 <!-- prettier-ignore -->
-| Skill                                 | Description                                                                                                                   |
+| Skill                                 | Description                                                                                                                                                                |
 |---|---|
-| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, files, whiteboards, goals, courses, and lessons |
+| [heptabase-cli](skills/heptabase-cli) | Use Heptabase CLI for notes, journals, tags, cards, files, whiteboard structure and layout, mind-map work, schematic screenshots, goals, courses, and lessons |
