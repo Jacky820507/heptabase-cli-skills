@@ -97,7 +97,7 @@ cp -R skills/heptabase-cli ~/.agents/skills/heptabase-cli
 ## Skills
 
 <!-- prettier-ignore -->
-| Skill                                 | Description                                                                                                                   |
+| Skill                                 | Description                                                                                                                                                                |
 |---|---|
-| [heptabase-cli](skills/heptabase-cli) | Interact with Heptabase using the CLI to manage notes, journals, tags, cards, files, whiteboards, goals, courses, and lessons |
+| [heptabase-cli](skills/heptabase-cli) | Use Heptabase CLI for notes, journals, tags, cards, files, whiteboard structure and layout, mind-map work, schematic screenshots, goals, courses, and lessons |
 | [gmail-to-heptabase-cards](skills/gmail-to-heptabase-cards) | Convert selected Gmail messages into Heptabase source and summary cards with deduplication and inbox whiteboard placement |
