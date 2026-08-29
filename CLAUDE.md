@@ -17,8 +17,10 @@
 | `.claude-plugin/plugin.json`、`.cursor-plugin/plugin.json` | plugin 版本號來源，兩份要手動保持一致 | 需先問，見 diagnosis.md 案例 1 |
 | `CONTRIBUTING.md` | 發版流程與 Release Checklist，發版前必讀 | 純文字潤飾可自行；流程內容需先問，見 `maintenance.md` |
 | `sync-github.ps1` | **產品腳本**（README 有記載），推送到使用者 fork 的白名單陣列 | 新增頂層檔案時要檢查，見 diagnosis.md 案例 2；陣列本身改動需先問 |
-| `install-codex.ps1`、`enable-codex-auto-sync.ps1` | 產品腳本，Codex 安裝用，README 有記載。**複製目標 `~/.codex/skills/` 與 Codex 官方文件記載的 `.agents/skills` 探索路徑可能不符，尚未確認**，見 `lessons-learned.md` | 需先問，見 `maintenance.md` |
+| `install-codex.ps1`、`enable-codex-auto-sync.ps1` | 產品腳本，Codex 安裝用，README 有記載。複製目標 `~/.codex/skills/`——**2026-08-29 上游合併的 README 已確認 `~/.agents/skills/` 是目前優先路徑，`~/.codex/skills/` 仍相容**，見 `lessons-learned.md` 已更新此筆 | 需先問，見 `maintenance.md` |
 | `AGENTS.md` | Codex CLI 的自動載入入口，跟這份檔案是同一套治理系統的另一個進入點 | 可自行擴充新 reference 內容 |
+| `.claude/skills/`（`public-repo-guard`、`release`、`maintain-skills`） | **維護者用 skill**（2026-08-12 上游合併進來），不出貨給終端使用者。`.agents/skills` 是指向這個目錄的 symlink，讓 Codex 等其他 agent 也能發現同一批維護者 skill——只改 `.claude/skills/` 底下 | 見 `maintenance.md` |
+| `.agents/skills` | 指向 `.claude/skills/` 的 symlink（上游新增） | 不要手動改內容 |
 | `silent_run.vbs`、`sync_upstream.bat` | **使用者私人腳本**，沒有出現在任何文件裡，拉 upstream 用 | **絕對不要動**，見 diagnosis.md 案例 3 |
 | `.githooks/`、`.github/workflows/` | git hooks 與 CI，跑跟 CONTRIBUTING 一樣的三個 validate 指令 | 不建議自行改 |
 | `.claude/docs/` | 這份治理系統的內容檔（本檔案只是索引） | 可自行擴充新 reference 內容 |
@@ -45,6 +47,8 @@
 4. **驗證不自驗**：檔案類用讀回確認，程式碼/設定類實際跑 `CONTRIBUTING.md` 列的三個 validate 指令。
 5. **不確定的事查證，查不到就明說「未確認」**，不要編造版本號、指令名稱或路徑。
 6. **這份 CLAUDE.md 只當索引**：新增內容一律寫進 `.claude/docs/`，並在上面的索引表補一行，不要把長內容塞進這個檔案本身。
+7. **這是公開 repo，commit 前先過 `public-repo-guard`**：每個 clone 只需跑一次 `node .claude/skills/public-repo-guard/scripts/install-git-hook.mjs` 裝 pre-commit hook（上游 2026-08-12 合併進來，見 [`.claude/skills/public-repo-guard/SKILL.md`](.claude/skills/public-repo-guard/SKILL.md)）；commit 前掃一遍 staged diff，移除任何機敏或內部資訊。
+8. **發版流程改用 `release` skill**：`CONTRIBUTING.md` 的 Release Checklist 現在指向 [`.claude/skills/release/SKILL.md`](.claude/skills/release/SKILL.md) 與其 `bump-version.mjs`／`preflight.mjs` 腳本，不是純手動列表——發版前照那份 skill 走。
 
 ## 記憶 vs repo 檔案
 

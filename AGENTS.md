@@ -21,6 +21,8 @@
 | `silent_run.vbs`、`sync_upstream.bat` | **使用者私人腳本**，沒有出現在任何文件裡 | **絕對不要動**，見 diagnosis.md 案例 3 |
 | `.claude/docs/` | 治理系統內容檔，Claude Code 與 Codex 共用 | 可自行擴充新內容 |
 | `.claude/commands/` | **只有 Claude Code 讀得到**的 slash command。Codex 沒有對應的 in-repo 機制（見下方「派工」段落） | 不影響 Codex 使用者 |
+| `.claude/skills/`（`public-repo-guard`、`release`、`maintain-skills`） | **維護者用 skill**（2026-08-12 上游合併進來），不出貨給終端使用者。`.agents/skills` 是指向這個目錄的 symlink，讓 Codex 等其他 agent 也能發現同一批維護者 skill——只改 `.claude/skills/` 底下，不要在 `.agents/` 底下另外放檔案 | 見下方 [`maintenance.md`](.claude/docs/maintenance.md) |
+| `.agents/skills` | 指向 `.claude/skills/` 的 symlink（上游新增），本身是自動產生的連結，不是內容來源 | 不要手動改內容，內容改動一律在 `.claude/skills/` 那邊做 |
 | `CLAUDE.md` | Claude Code 的自動載入入口，跟這份檔案是同一套治理系統的另一個進入點 | 可自行擴充新 reference 內容 |
 
 ## 治理文件索引
@@ -49,3 +51,5 @@ Codex 的「Custom Prompts」（`~/.codex/prompts/*.md`，`/name` 呼叫）**已
 4. **驗證不自驗**：檔案類用讀回確認，程式碼/設定類實際跑 `CONTRIBUTING.md` 列的三個 validate 指令。
 5. **不確定的事查證，查不到就明說「未確認」**，不要編造版本號、指令名稱或路徑——包含 Codex CLI 自己的功能細節，這些會隨 Codex 版本變動，這份文件裡標記「未確認」的地方用之前重新查證。
 6. **這份 `AGENTS.md` 只當索引**：新增內容一律寫進 `.claude/docs/`，並在上面的索引表補一行。
+7. **這是公開 repo，commit 前先過 `public-repo-guard`**：每個 clone 只需跑一次 `node .claude/skills/public-repo-guard/scripts/install-git-hook.mjs` 裝 pre-commit hook（上游 2026-08-12 合併進來，見 [`.claude/skills/public-repo-guard/SKILL.md`](.claude/skills/public-repo-guard/SKILL.md)）；commit 前掃一遍 staged diff，移除任何機敏或內部資訊。
+8. **發版流程改用 `release` skill**：`CONTRIBUTING.md` 的 Release Checklist 現在指向 [`.claude/skills/release/SKILL.md`](.claude/skills/release/SKILL.md) 與其 `bump-version.mjs`／`preflight.mjs` 腳本，不是純手動列表——發版前照那份 skill 走。

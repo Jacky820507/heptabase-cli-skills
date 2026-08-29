@@ -1,5 +1,19 @@
 # Contributing
 
+## Setup (once per clone)
+
+This is a **public** repo. Install the local pre-commit hook so staged changes are scanned for sensitive/internal data before every commit:
+
+```bash
+node .claude/skills/public-repo-guard/scripts/install-git-hook.mjs
+```
+
+Hooks live under `.git/` and are never committed. Details: [`.claude/skills/public-repo-guard/SKILL.md`](.claude/skills/public-repo-guard/SKILL.md).
+
+## Agent skills layout
+
+Maintainer skills live under [`.claude/skills/`](.claude/skills/). [`.agents/skills`](.agents/skills) is a symlink to that folder so Codex and other skills-compatible agents discover the same skills. Edit only under `.claude/skills/`. Product skills shipped to users live under [`skills/`](skills/) and are separate. See [AGENTS.md](AGENTS.md).
+
 ## Release Process
 
 Release a new version when the Heptabase CLI interface changes or when the CLI version no longer matches the compatibility range declared in `skills/heptabase-cli/SKILL.md`.
@@ -16,6 +30,8 @@ Because `.claude-plugin/plugin.json` wins, keep the plugin version there as the 
 
 This repo also ships a Cursor plugin manifest at `.cursor-plugin/plugin.json` (single-plugin layout, no `marketplace.json`). Cursor reads its version from that file, so keep `.cursor-plugin/plugin.json` `version` in sync with `.claude-plugin/plugin.json` `version` on every release.
 
+**Follow [`.claude/skills/release/SKILL.md`](.claude/skills/release/SKILL.md) for the full release process.** That skill is the source of truth for branching, bumping, preflight, tagging, and publishing.
+
 ## Version Bump Guidelines
 
 - Use a patch bump for documentation-only skill fixes that do not change CLI compatibility.
@@ -24,10 +40,20 @@ This repo also ships a Cursor plugin manifest at `.cursor-plugin/plugin.json` (s
 
 ## Release Checklist
 
-- Bump `.claude-plugin/plugin.json` `version`.
-- Bump `.cursor-plugin/plugin.json` `version` to match.
-- Update `skills/heptabase-cli/SKILL.md` `metadata.heptabase-cli-version-range` only when the supported CLI range changes.
-- Validate the skill: `npx --yes skills-ref validate ./skills/heptabase-cli`.
-- Validate the Claude Code marketplace manifest: `claude plugin validate .`.
-- Validate the Cursor plugin manifest: `node scripts/validate-cursor-plugin.mjs`.
-- Commit, tag, and push the release.
+Use the bundled scripts from the release skill (they locate the repo root themselves):
+
+1. Create a feature branch from updated `main`.
+2. Bump both plugin manifests together:
+   ```bash
+   node .claude/skills/release/scripts/bump-version.mjs patch
+   ```
+3. Update `skills/heptabase-cli/SKILL.md` `metadata.heptabase-cli-version-range` only when the supported CLI range changes (frontmatter and the Prerequisites prose must match).
+4. Commit the bump (and any CLI-range edit).
+5. Run preflight and fix any FAILs:
+   ```bash
+   node .claude/skills/release/scripts/preflight.mjs
+   ```
+6. Land via a PR with a conventional-commit title, wait for CI, merge.
+7. On updated `main`, rerun preflight (it prints the tag/release commands only when tag-ready), then tag and publish the GitHub release — only with explicit maintainer confirmation.
+
+Preflight runs the same three validators CI uses (`skills-ref`, `claude plugin validate`, and `node scripts/validate-cursor-plugin.mjs`).

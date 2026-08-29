@@ -23,15 +23,15 @@ read_when: 開始任務前掃一眼；踩雷後在這裡加一筆
 
 ---
 
-### 2026-07-04：`install-codex.ps1` 的複製目標可能與 Codex CLI 目前的 skill 探索路徑不符
+### 2026-08-29（已處理）：`install-codex.ps1` 複製目標路徑的疑慮已由上游 README 更新解除
 
-**發生什麼**：`install-codex.ps1` 把 `skills/` 複製到 `~/.codex/skills/`（見該檔案 `$CodexSkillsDir` 預設值）。但查證 Codex CLI 官方文件（`developers.openai.com/codex/skills`，2026-07-04 用 WebFetch 直接讀取確認）顯示目前的 skill 探索路徑是 repo 層的 `.agents/skills`（`$CWD/.agents/skills`、`$REPO_ROOT/.agents/skills`）與使用者層的 `$HOME/.agents/skills`，文件裡完全沒有提到 `~/.codex/skills` 這個路徑。
+**發生什麼**：2026-07-04 曾記錄「`install-codex.ps1` 複製到 `~/.codex/skills/`，可能與 Codex 官方文件記載的 `.agents/skills` 探索路徑不符」。這次合併上游 `main`（17 個新 commit，含 `ed0a765`／`ca52ce4` "docs: add .agents skills layout for Codex and other agents"）後，`README.md` 已明確寫成「Copy the contents of `skills/` into your user skills path (prefer `~/.agents/skills/`; `~/.codex/skills/` still works)」——確認兩個路徑目前都相容，`~/.agents/skills/` 是官方建議的優先路徑。
 
-**為什麼會發生**：不確定——可能是這支腳本寫成的時候 Codex CLI 用的是舊路徑慣例，後來官方改了探索路徑但這支腳本沒跟著更新；也可能官方文件本身有其他相容路徑沒寫清楚。兩種可能都沒有查證到足夠證據排除另一種。
+**為什麼會發生**：Codex 官方在兩個路徑之間做了過渡期相容，上游維護者後來在文件裡把這件事講清楚了，不是這個 fork 這邊的判斷錯誤。
 
-**怎麼處理的**：**沒有修改 `install-codex.ps1`**。這是一支 README 記載、會實際影響使用者安裝結果的產品腳本，屬於 `maintenance.md`「動之前必須先問使用者」的範圍——貿然把複製目標從 `~/.codex/skills/` 改成 `$HOME/.agents/skills`，如果判斷錯了會讓原本能用的安裝流程失效。只在這裡記錄發現，並在 `CLAUDE.md`／`AGENTS.md` 的 repo map 裡加了提示。**`README.md:26` 也寫著同樣的 `~/.codex/skills` 路徑（"typically `~/.codex/skills`"）**——如果之後真的要修 `install-codex.ps1`，這裡也要跟著改，目前只有這筆記錄提到 README 這處，沒有另外列進 `maintenance.md` 的表格。
+**怎麼處理的**：`CLAUDE.md`／`AGENTS.md` 的 repo map 已更新為「兩個路徑目前都相容，`~/.agents/skills/` 優先」，不再標記「未確認」。**仍未動 `install-codex.ps1` 本身**——它目前的 `~/.codex/skills/` 預設值依然有效，沒有非改不可的理由；如果之後要把預設值換成 `~/.agents/skills/`，仍屬於 `maintenance.md`「動之前必須先問使用者」的範圍。
 
-**要不要吸收成規則**：待使用者確認後處理，不是待吸收成規則——這不是「這個 repo 常犯的錯」，是一次性的「腳本可能過時」問題。使用者確認實際情況後（例如親自測試 `~/.codex/skills/` 現在還能不能被 Codex 讀到），視結果決定是否修改 `install-codex.ps1` 的 `$CodexSkillsDir` 預設值，並在那時把這筆記錄更新成「已處理」或刪除。
+**要不要吸收成規則**：一次性狀況，已解決，不需要變成規則。保留這筆記錄只是為了交代前一筆記錄的後續。
 
 ---
 
