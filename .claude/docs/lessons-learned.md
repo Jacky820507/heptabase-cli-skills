@@ -23,6 +23,18 @@ read_when: 開始任務前掃一眼；踩雷後在這裡加一筆
 
 ---
 
+### 2026-08-30：`scripts/validate-cursor-plugin.mjs` 在 Windows 本機跑不了
+
+**發生什麼**：在 Windows（PowerShell 與 Git Bash 都一樣）跑 `node scripts/validate-cursor-plugin.mjs` 會失敗：`Cursor plugin schema validation failed: spawnSync npx ENOENT`。確認 `npx`／`npx.cmd` 都在 PATH 上（`where npx` 有回傳），問題出在腳本內用 `spawnSync("npx", ...)`——Node 在 Windows 上呼叫 `spawnSync` 時不會自動幫 `npx` 加上 `.cmd` 副檔名或用 shell 解析，除非顯式加 `shell: true` 或指定完整檔名，這是 Node on Windows 常見的已知行為。
+
+**為什麼會發生**：這支腳本大概率是在 macOS/Linux（含 GitHub Actions CI）上寫成並測試的，那些平台上 `spawnSync("npx", ...)` 可以直接找到執行檔，不需要特殊處理；Windows 是例外情況，寫腳本的人可能沒有在 Windows 本機測過。
+
+**怎麼處理的**：**沒有修改 `scripts/validate-cursor-plugin.mjs`**——這是 CI／發版流程共用的驗證腳本，屬於「動之前先確認影響範圍」的範圍，且 CI 本身（GitHub Actions，通常跑 Linux runner）大機率不受影響，貿然改 spawn 方式有風險。只在這裡記錄：**在 Windows 本機做 Release Checklist／preflight 時，這一步验证目前跑不過，需要使用者確認是否要修（例如改成 `spawnSync("npx.cmd", ...)` 或加 `shell: true`），或改成在 CI／WSL 上跑這個驗證**。
+
+**要不要吸收成規則**：待使用者確認後處理。如果之後要修，屬於 `maintenance.md` 沒明講但風險等級接近「`.githooks/`、CI」那類，修之前先問。
+
+---
+
 ### 2026-08-29（已處理）：`install-codex.ps1` 複製目標路徑的疑慮已由上游 README 更新解除
 
 **發生什麼**：2026-07-04 曾記錄「`install-codex.ps1` 複製到 `~/.codex/skills/`，可能與 Codex 官方文件記載的 `.agents/skills` 探索路徑不符」。這次合併上游 `main`（17 個新 commit，含 `ed0a765`／`ca52ce4` "docs: add .agents skills layout for Codex and other agents"）後，`README.md` 已明確寫成「Copy the contents of `skills/` into your user skills path (prefer `~/.agents/skills/`; `~/.codex/skills/` still works)」——確認兩個路徑目前都相容，`~/.agents/skills/` 是官方建議的優先路徑。
