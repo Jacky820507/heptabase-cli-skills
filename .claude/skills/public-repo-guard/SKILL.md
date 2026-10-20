@@ -1,6 +1,6 @@
 ---
 name: public-repo-guard
-description: This repo (heptabase-cli-skills) is PUBLIC — everything committed is visible to the world and permanent in git history. Use before EVERY commit, push, PR, or release here, and whenever adding or editing docs, skills, scripts, or examples in this repo. Scans staged changes for sensitive or internal data — credentials, tokens, private keys, emails, personal home paths, internal workspace URLs (Notion, Slack, Discord, Linear), real card/workspace UUIDs, IP addresses, secret-bearing filenames — and explains how to judge and fix findings. Also use when asked to review any content in this repo for public sharing.
+description: "此 heptabase-cli-skills 儲存庫是公開的——所有提交內容都會公開且永久保存在 git 歷史中。每次在此儲存庫進行 commit、push、PR 或 release 前，以及新增或編輯文件、skills、scripts 或範例時，都要使用。掃描 staged changes 中的敏感或內部資料——憑證、token、私密金鑰、電子郵件、個人家目錄路徑、內部工作區 URL（Notion、Slack、Discord、Linear）、真實卡片/工作區 UUID、IP 位址與含秘密的檔名——並說明如何判斷與修正發現結果。當使用者要求審查此儲存庫中要公開分享的任何內容時也使用。"
 allowed-tools: Bash(node *) Bash(git diff *) Bash(git status *) Bash(git ls-files *)
 ---
 

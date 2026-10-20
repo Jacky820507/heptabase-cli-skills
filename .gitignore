@@ -12,3 +12,4 @@
 
 # Node (in case tooling caches locally)
 node_modules/
+logs/

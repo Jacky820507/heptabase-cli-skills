@@ -1,6 +1,6 @@
 ---
 name: release
-description: Release a new version of heptabase-cli-skills, the public Agent Skills plugin package for the Heptabase CLI. Use whenever asked to release, publish, ship, tag, or bump the version of this skills package/plugin, to check whether it is release-ready, or to create its GitHub release. Covers version bumping across plugin manifests, preflight validation, tagging, and publishing the GitHub release. Not for releasing the Heptabase desktop app or the heptabase CLI binary itself — those are versioned separately.
+description: "發布 heptabase-cli-skills 的新版本；這是 Heptabase CLI 的公開 Agent Skills plugin 套件。當使用者要求 release、publish、ship、tag 或 bump 此 skills 套件/plugin 版本、檢查是否可發布，或建立 GitHub release 時使用。涵蓋 plugin manifest 的版本更新、preflight 驗證、tagging 與 GitHub release 發布。不適用於發布 Heptabase 桌面應用程式或 heptabase CLI binary；它們各自獨立版本管理。"
 allowed-tools: Bash(node *) Bash(npx --yes skills-ref *) Bash(git status *) Bash(git log *) Bash(git tag -l *) Bash(git describe *) Bash(git rev-parse *) Bash(gh release list *) Bash(gh release view *) Bash(gh pr list *)
 disable-model-invocation: true
 ---

@@ -1,6 +1,6 @@
 ---
 name: heptabase-cli
-description: Use the local heptabase CLI whenever the user mentions Heptabase or shares an app.heptabase.com URL/deep link. Read and edit notes, journals, tags, and properties; read chats, messages, and files; and work with whiteboard structure and layout through the running desktop app, including sections, connections, mind maps, lint, and schematic screenshots. Also browse AI Tutor goals, courses, and lessons. Do not open Heptabase links in an agent browser unless the user asks.
+description: "當使用者提到 Heptabase 或分享 app.heptabase.com URL/deep link 時，使用本機 heptabase CLI。可讀寫 notes、journals、tags 與 properties，讀取 chats、messages、files，並透過執行中的桌面 app 處理白板結構與版面，包括 sections、connections、mind maps、lint 與 schematic screenshots；也可瀏覽 AI Tutor goals、courses 與 lessons。除非使用者要求，不要用 agent browser 開啟 Heptabase 連結。"
 allowed-tools: Bash(heptabase *) Bash(jq *) Bash(mktemp *)
 metadata:
   heptabase-cli-version-range: "0.6.x"
