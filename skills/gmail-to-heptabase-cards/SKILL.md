@@ -42,15 +42,14 @@ Gmail query 範例，請用使用者提供的實際白名單取代 placeholder�
 ## Heptabase 目標位置
 
 - 白板名稱：`00_INBOX暫存區`
-- 已知白板 ID：`f80511a8-f2b6-4c27-9d30-1d290f91561b`
 
-寫入前，先確認白板仍然存在：
+請勿在可分享的 Skill 內寫入白板的真實 UUID。寫入前，先用名稱查出目前的白板 ID：
 
 ```bash
 heptabase whiteboard list -n "00_INBOX暫存區" -l 20
 ```
 
-如果 ID 不同，使用 CLI 回傳的 ID。
+使用 CLI 回傳的 `<whiteboardId>` 進行後續操作。
 
 ## 必要流程
 

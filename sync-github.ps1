@@ -15,13 +15,16 @@ if (-not $SkipPull) {
 $PathsToStage = @(
     "skills",
     ".claude-plugin",
+    ".claude",
     ".github",
     ".githooks",
     "install-codex.ps1",
     "enable-codex-auto-sync.ps1",
     "sync-github.ps1",
     "README.md",
-    "CONTRIBUTING.md"
+    "CONTRIBUTING.md",
+    "CLAUDE.md",
+    "AGENTS.md"
 )
 
 git add -- $PathsToStage
