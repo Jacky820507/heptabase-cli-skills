@@ -1,0 +1,5 @@
+#!/bin/sh
+# public-repo-guard pre-commit hook — scans staged changes for sensitive/internal data.
+# Installed by .claude/skills/public-repo-guard/scripts/install-git-hook.mjs
+# Bypass for a justified false positive: git commit --no-verify (explain in the PR).
+exec node .claude/skills/public-repo-guard/scripts/scan-sensitive.mjs --staged

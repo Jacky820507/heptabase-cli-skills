@@ -13,3 +13,8 @@
 # Node (in case tooling caches locally)
 node_modules/
 logs/
+
+# Local machine-specific sync scripts
+/silent_run.vbs
+/sync_upstream.bat
+/sync.log
